@@ -13,10 +13,10 @@ phone.toString()
             }
             User.create({name, email, phone, password:hash})
                 .then(() => {
-                    res.status(201).json({message: `user created`});
+                    res.status(201).json({message: `Signup Succesfull`});
                 })
                 .catch((err) => {
-                    res.status(403).json({success:false, error:err})
+                    res.status(403).json({message: `user already exists!!!, please login`})
                 })
         });    
     });

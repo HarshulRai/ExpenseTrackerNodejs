@@ -5,14 +5,16 @@ const signupRoute = require('./routes/signup')
 const sequelize = require('./utils/database')
 
 const app = express()
-app.use(express.urlencoded({extended: false}))
+app.use(cors())
+app.use(express.json())
 app.use(signupRoute)
 
-sequelize.sync()
+sequelize
+    .sync({force:true})
     .then(() => {
         console.log('table created');
     })
     .catch((err) => {
-        console.log(err);
+        console.log(`><><<><`,err);
     })
 app.listen(3000)    
