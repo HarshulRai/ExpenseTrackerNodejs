@@ -13,6 +13,7 @@ function submitForm(e) {
         alert(res.data.message);
     }).catch(err => {
         console.log(err);
-        alert(`User already exists, Please Login`)
+        console.log(err.message);
+        // alert(`User already exists, Please Login`)
     })
 }
