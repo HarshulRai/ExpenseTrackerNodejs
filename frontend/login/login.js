@@ -7,5 +7,9 @@ function submitForm(event) {
     }
     axios.post(`http://localhost:3000/login`,loginDetails).then((response) => {
         console.log(response);
-    }).catch((error) => {console.log(error);})
+        localStorage.setItem(`JWTTOKEN`,JSON.stringify(response.data.token))
+        localStorage.setItem(`USER_DETAILS`,JSON.stringify(response.data.user))
+        window.location.href = "../expense/expense.html";
+    }).catch((error) => {console.log(error);
+    })
 }

@@ -6,12 +6,20 @@ const sequelize = require('./utils/database')
 
 const signupRoute = require('./routes/signup')
 const loginRoute = require('./routes/login')
+const expenseRoute = require('./routes/expense')
+
+const User = require('./models/users')
+const Expense = require('./models/expense')
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(signupRoute)
-app.unsubscribe(loginRoute)
+app.use(loginRoute)
+app.use(expenseRoute)
+
+User.hasMany(Expense)
+Expense.belongsTo(User)
 
 sequelize
     .sync()
